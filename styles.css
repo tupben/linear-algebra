@@ -1,0 +1,58 @@
+#bigBox {
+	display: flex;
+	flex-direction: row;
+}
+
+#graphBox {
+	background-color: #F0F0F0;
+	border: 1px darkgray solid;
+	flex:2;
+	height: 98%;
+	margin: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#dataBox {
+	background-color: lightgray;
+	border: 1px darkgray solid;
+	flex:1;
+	height: 98%;
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+}
+
+#printBox {
+	flex: 1;
+	/*padding: 10px;*/
+}
+
+#inputBox {
+	flex: 1;
+	border-top: 1px darkgray solid;
+}
+
+#graphBox:hover {
+	border: 1px black solid;
+}
+
+#printBox:hover {
+	border: 1px black solid;
+}
+
+#inputBox:hover {
+	border: 1px black solid;
+}
+
+.text {
+	margin: 32px;
+	font-size: 32px;
+	font-family: courier;
+}
+
+line {
+  stroke: black;
+  stroke-width: 1px;
+}

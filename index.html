@@ -1,0 +1,105 @@
+<html>
+<!-- <meta charset="utf-8"> -->
+<head>
+  <title>Transform</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>  
+
+<div id="bigBox">
+  <div id="graphBox"></div>
+  <div id="dataBox">
+    <div id="printBox"></div>
+    <div id="inputBox"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.js" type="text/javascript"></script>
+<script src="/functions.js" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+<script>
+
+var height = width = 700;
+var margin = 4;
+var unit = 50;
+var ticks = Math.floor(1*width/unit+1);
+var data = lattice(ticks)
+
+var x = d3.scale.linear()
+  .domain([0,1])
+  .range([0,unit])
+
+var y = d3.scale.linear()
+  .domain([0,1])
+  .range([0,-unit])
+
+var color = d3.scale.linear()
+  .domain([0, 4*ticks*ticks])
+  .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+
+var svg = d3.select("#graphBox")
+  .append("svg")
+    .attr("width",width + margin*2)
+    .attr("height",height + margin*2)
+  .append("g")
+    .attr("transform","translate(" + eval(width/2 + margin) + "," + eval(height/2 + margin) + ")")
+
+var circle = svg.selectAll("circle")
+    .data(data)
+  .enter().append("circle")
+    .attr("cx",function(d){return x(d[0])})
+    .attr("cy",function(d){return y(d[1])})
+    .style("fill",function(d,i){return color(i)})
+    .attr("r",4)
+
+
+var xAxis = svg
+  .append("line")
+    .attr("class","x axis")
+    .attr("x1",-width)
+    .attr("y1",0)
+    .attr("x2",width)
+    .attr("y2",0)
+
+var yAxis = svg
+  .append("line")
+    .attr("class","y axis")
+    .attr("x1",0)
+    .attr("y1",height)
+    .attr("x2",0)
+    .attr("y2",-height)
+// these should be generalized for all verticle and horizontal lines
+
+function update() {
+  circle
+      .data(data)
+    .transition()
+      .delay(500)
+      .duration(6000)
+      .attr("cx",function(d){return x(d[0])})
+      .attr("cy",function(d){return y(d[1])})
+      // .each("end",function(){print('test8')})
+      // figure out how to stack these
+}
+
+var rotateL =  [ [0,-1],
+                 [1,0]];
+var rotateR =  [ [0,1],
+                 [-1,0]];
+var flipXAxis =[ [1,0],
+                 [0,-1]];
+var somethingCrazy = [[2,1],
+                      [0,1]]
+
+var trans = somethingCrazy
+print(trans,"box")
+data = data.map(function(x) {
+  return math.multiply(trans,x)
+})
+
+update()
+
+
+</script>
+</body>
+<!-- </html> -->
