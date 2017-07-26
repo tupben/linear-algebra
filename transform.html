@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <title>Linear</title>
+<style>
+
+svg {
+  border: 1px gray solid;
+}
+
+#container {
+  margin: 0 auto;
+}
+
+circle {
+  fill: steelblue;
+}
+
+line {
+  stroke: black;
+  stroke-width: 1px;
+}
+
+
+</style>
+</head>
+<body><h1>Linear</h1>
+<div id="container"></div>
+
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.js"></script>
+<script>
+
+var height = 500;
+var width = height;
+var x_max = 10;
+var y_max = x_max;
+var margin = 4;
+
+var x = d3.scale.linear()
+  .domain([-x_max,x_max])
+  .range([-width/2,width/2])
+
+var y = d3.scale.linear()
+  .domain([-y_max,y_max])
+  .range([height/2,-height/2])
+
+var data = [[[0],[0]],
+            [[1],[0]],
+            [[2],[0]],
+            [[3],[0]],
+            [[4],[0]],
+            [[0],[1]],
+            [[1],[1]],
+            [[2],[1]],
+            [[3],[1]],
+            [[4],[1]],
+            [[0],[2]],
+            [[1],[2]],
+            [[2],[2]],
+            [[3],[2]],
+            [[4],[2]],
+            [[0],[3]],
+            [[1],[3]],
+            [[2],[3]],
+            [[3],[3]],
+            [[4],[3]],
+]
+
+var svg = d3.select("#container")
+    .style("width",width + "px")
+  .append("svg")
+    .attr("width",width + margin*2)
+    .attr("height",height + margin*2)
+  .append("g")
+    .attr("transform","translate(" + eval(width/2 + margin) + "," + eval(height/2 + margin) + ")")
+
+var circle = svg.selectAll("circle")
+    .data(data)
+  .enter().append("circle")
+    .attr("cx",function(d){return x(d[0])})
+    .attr("cy",function(d){return y(d[1])})
+    .attr("r",3)
+
+
+var xAxis = svg
+  .append("line")
+    .attr("class","x axis")
+    .attr("x1",-width)
+    .attr("y1",0)
+    .attr("x2",width)
+    .attr("y2",0)
+
+var yAxis = svg
+  .append("line")
+    .attr("class","y axis")
+    .attr("x1",0)
+    .attr("y1",height)
+    .attr("x2",0)
+    .attr("y2",-height)
+
+
+function update() {
+  circle
+      .data(data)
+    .transition()
+      .delay(1000)
+      .duration(3000)
+      .attr("cx",function(d){return x(d._data[0])})
+      .attr("cy",function(d){return y(d._data[1])})
+}
+
+var rotate90 = math.matrix([ [0,-1],
+                             [1,0]] );
+
+var data = data.map(function(x) {
+  return math.multiply(rotate90,x)
+})
+
+
+// console.log(data)
+// console.log(data2)
+// console.log(data2[0][0])
+// console.log(data2[0][1])
+
+update()
+
+
+</script>
+</body>
+</html>
