@@ -12,10 +12,15 @@ range = function(a,b,step){
 print = function(a,b){
 	if (!b) {
 		console.log(a);
-	} else {
+	} else if (typeof a === "object" || typeof a === "list"){
 		var a = a.map(function(x,i){return i?"<br/>"+x:x})
 		var printBox = d3.select("#printBox")
-		printBox.append("div")
+			.append("div")
+			.attr("class","text")
+			.html(a[0]+a[1])
+	} else {
+		var printBox = d3.select("#printBox")
+			.append("div")
 			.attr("class","text")
 			.html(a)
 	}
@@ -33,3 +38,5 @@ lattice = function(y,x){
 	}
 	return grid;
 }
+
+

@@ -1,5 +1,5 @@
 <html>
-<!-- <meta charset="utf-8"> -->
+<meta charset="utf-8">
 <head>
   <title>Transform</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
@@ -9,13 +9,14 @@
 <div id="bigBox">
   <div id="graphBox"></div>
   <div id="dataBox">
-    <div id="printBox"></div>
+    <div id="printBox"><div>TRANSFORMATIONS</div><br></div>
     <div id="inputBox">
       
-        <form name="myform">
-            <input type="text" id="myVal" placeholder="i.e 1,0,0,1">
+        <form name="myform" action="#" onkeypress="handleClick(event)" autocomplete="off">
+            ENTER TRANSFORMATION<br><br>
+            <input type="text" id="myVal" placeholder="i.e 1,0,0,1" >
             <br><br>
-            <div id="submit" onClick="handleClick()">Transform!</div>
+            <div id="submit" onClick="handleClick(1)">Transform!</div>
         </form>
 
     </div>
@@ -29,16 +30,14 @@
 <script src="https://d3js.org/d3.v3.min.js" type="text/javascript"></script>
 <script>
 
-
-
-
-
-
 var height = width = 700;
 var margin = 4;
 var unit = 50;
-var ticks = Math.floor(1*width/unit+1);
-var data = lattice(ticks)
+var ticks = math.floor(2*width/unit+1);
+
+var latticeData = lattice(ticks)
+// var latticeData = [[1,-2]]
+// var latticeData = [[1,0],[0,1]]
 
 var x = d3.scale.linear()
   .domain([0,1])
@@ -60,7 +59,7 @@ var svg = d3.select("#graphBox")
     .attr("transform","translate(" + eval(width/2 + margin) + "," + eval(height/2 + margin) + ")")
 
 var circle = svg.selectAll("circle")
-    .data(data)
+    .data(latticeData)
   .enter().append("circle")
     .attr("cx",function(d){return x(d[0])})
     .attr("cy",function(d){return y(d[1])})
@@ -83,13 +82,12 @@ var yAxis = svg
     .attr("y1",height)
     .attr("x2",0)
     .attr("y2",-height)
-// these should be generalized for all verticle and horizontal lines
 
-function update() {
+
+function update(data) {
   circle
       .data(data)
     .transition()
-      // .delay(500)
       .duration(6000)
       .attr("cx",function(d){return x(d[0])})
       .attr("cy",function(d){return y(d[1])})
@@ -97,52 +95,51 @@ function update() {
       // figure out how to stack these
 }
 
-var rotateL =  [ [0,-1],
-                 [1,0]];
-var rotateR =  [ [0,1],
-                 [-1,0]];
-var flipXAxis =[ [1,0],
-                 [0,-1]];
-var somethingCrazy = [[2,1],
-                      [0,1]]
+var rotateL   =       [ [0,-1],
+                        [1,0]];
+var rotateR   =       [ [0,1],
+                        [-1,0]];
+var flipX     =       [ [1,0],
+                        [0,-1]];
+var flipY     =       [ [-1,0],
+                        [0,1]];
+var shearR    =       [ [1,1],
+                        [0,1]];
+var somethingCray =  [  [-2,1],
+                        [-1,4]];
 
-var trans = somethingCrazy
 
-
-function updateData(op){
-  print(op,"box")
-  data = data.map(function(x) {
-    return math.multiply(op,x)
+function transform(data,operation){
+  if (typeof eval(operation) === "object"){
+    operation = eval(operation);
+  } else if (typeof eval(operation) === "number"){
+    val = operation.split(",");
+    var a = val[0];
+    var b = val[1];
+    var c = val[2];
+    var d = val[3];
+    operation = [[a,c],[b,d]];
+  } 
+  print(operation,true);
+  return data.map(function(x) {
+    return math.multiply(operation,x)
   })
 }
 
-// updateData(trans)
-
-// update()
-
-
-function handleClick(event){
-    console.log(document.getElementById("myVal").value)
-    draw(document.getElementById("myVal").value)
-    return false;
+function handleClick(e){
+  if(e.keyCode === 13) {
+    e.preventDefault();
+  }
+  if(e.keyCode === 13 || e === 1) {
+    var inputTransform = document.getElementById("myVal").value;
+    latticeData = transform(latticeData,inputTransform)
+    update(latticeData);
+    document.getElementById("myVal").value = "";
+  }
+  return false;
 }
-
-function draw(val){
-  val = val.split(",")
-  var a = val[0]
-  var b = val[1]
-  var c = val[2]
-  var d = val[3]
-
-  updateData([[a,b],[c,d]]);
-  update();
-}
-
-
-
-
 
 
 </script>
 </body>
-<!-- </html> -->
+</html>

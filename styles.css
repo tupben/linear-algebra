@@ -1,11 +1,13 @@
 #bigBox {
 	display: flex;
 	flex-direction: row;
+	font-size: 30px;
+	color: white;
 }
 
 #graphBox {
-	background-color: #F0F0F0;
-	border: 1px darkgray solid;
+	background-color: black;
+	border: 1px white solid;
 	flex:2;
 	height: 98%;
 	margin: 5px;
@@ -15,22 +17,26 @@
 }
 
 #dataBox {
-	background-color: lightgray;
+	background-color: black;
 	border: 1px darkgray solid;
 	flex:1;
 	height: 98%;
 	margin: 5px;
 	display: flex;
 	flex-direction: column;
+	font-family: courier;
+
 }
 
 #printBox {
 	flex: 1;
+	border: 1px transparent solid;
 	padding: 30px;
 }
 
 #inputBox {
 	flex: 1;
+	border: 1px transparent solid;
 	border-top: 1px darkgray solid;
 	padding: 30px;
 }
@@ -40,22 +46,24 @@
 }
 
 #printBox:hover {
-	border: 1px black solid;
-	font-size: 98px;
+	border: 1px white solid;
 }
 
 #inputBox:hover {
-	border: 1px black solid;
+	border: 1px white solid;
 }
 
 .text {
-	margin: 0 0 10px 0;
+	margin: 0 4px 4px 0;
+	padding:8px;
 	font-size: 36px;
 	font-family: courier;
+	border: 1px solid steelblue;
+	display: inline-block;
 }
 
 line {
-  stroke: black;
+  stroke: white;
   stroke-width: 1px;
 }
 
@@ -66,9 +74,11 @@ input {
 
 #submit{
 	height:30px;
-	width: 100px;
-	border: 1px black solid;
-	font-size: 20px;
+	width: 160px;
+	border: 1px white solid;
+	font-size: 24px;
 	text-align: center;
-	background-color: lightblue;
+	background-color: white;
+	color: black;
+	cursor: pointer;
 }
