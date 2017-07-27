@@ -33,5 +33,3 @@ lattice = function(y,x){
 	}
 	return grid;
 }
-
-

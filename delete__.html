@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>Layout</title>
+<style>
+#bigBox {
+	display: flex;
+	flex-direction: row;
+}
+
+#graphBox {
+	background-color: #F0F0F0;
+	border: 1px darkgray solid;
+	flex:2;
+	height: 98%;
+	margin: 5px;
+}
+
+#dataBox {
+	background-color: lightgray;
+	border: 1px darkgray solid;
+	flex:1;
+	height: 98%;
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+}
+
+#printBox {
+	flex: 1;
+}
+
+#inputBox {
+	flex: 1;
+	border-top: 1px darkgray solid;
+}
+
+#graphBox:hover {
+	border: 1px black solid;
+}
+
+#printBox:hover {
+	border: 1px black solid;
+}
+
+#inputBox:hover {
+	border: 1px black solid;
+}
+
+.text {
+	margin: 14px 0 0 18px;
+	font-size: 22px;
+	font-family: courier;
+}
+
+</style>
+</head>
+<body>	
+
+<div id="bigBox">
+	<div id="graphBox"></div>
+	<div id="dataBox">
+		<div id="printBox"></div>
+		<div id="inputBox"></div>
+	</div>
+</div>
+
+<!-- <script src="https://d3js.org/d3.v3.min.js" type="text/javascript"></script> -->
+
+<script>
+
+d3.select("")
+
+print = function(a,b){
+	if (!b) {
+		console.log(a);
+		console.log('test1')
+	} else {
+		console.log("test2");
+		var printBox = d3.select("#printBox")
+		printBox.append("div")
+			.attr("class","text")
+			.html(newLine(a))
+	}
+}
+
+function newLine(str) {
+	str = str.split("")
+	var newString = str.map(function(x){
+		return x.charCodeAt()===10 ? "<br />":x;
+	}).join("")
+	// newString = newString.join("")
+	return newString;
+}
+
+
+var myText = "2 3\n2 4\n\n2 3\n2 4"
+print(myText,true)
+print("hello world again!")
+
+
+
+</script>
+
+
+
+</body>

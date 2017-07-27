@@ -1,0 +1,59 @@
+
+<html>
+<head>
+<title>Functions</title>
+</head>
+<body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.js"></script>
+<script>
+
+range = function(a,b,step){
+  var A=[];
+  if (!b) [b,a]=[a,0];
+  step = step || 1;
+  A[0]=a;
+  while(a+step<=b-1){
+    A[A.length]= a+= step;
+  }
+	return A;
+}
+
+print = function(a){
+	console.log(a);
+}
+
+lattice = function(y,x){
+	if (!x) x=y;
+	var grid = [];
+	for (a of range(2*x-1)){
+		for (b of range(2*y-1)){
+			var i = a - y + 1;
+			var j = b - x + 1;
+			grid.push([i,j]);
+		}
+	}
+	return grid;
+}
+
+// lattice = function(y,x){
+// 	if (!x) x=y;
+// 	var grid = [];
+// 	for (a of range(x)){
+// 		for (b of range(y)){
+// 			var i = a - math.floor((y-1)/2);
+// 			var j = b - math.floor((x-1)/2);
+// 			grid.push([i,j]);
+// 		}
+// 	}
+// 	return grid;
+// }
+
+
+print(lattice(2))
+print(range(0,10))
+print(range(10))
+
+
+</script>
+</body>
+</html>

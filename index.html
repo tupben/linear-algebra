@@ -10,14 +10,29 @@
   <div id="graphBox"></div>
   <div id="dataBox">
     <div id="printBox"></div>
-    <div id="inputBox"></div>
+    <div id="inputBox">
+      
+        <form name="myform">
+            <input type="text" id="myVal" placeholder="i.e 1,0,0,1">
+            <br><br>
+            <div id="submit" onClick="handleClick()">Transform!</div>
+        </form>
+
+    </div>
   </div>
 </div>
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.js" type="text/javascript"></script>
 <script src="/functions.js" type="text/javascript"></script>
 <script src="https://d3js.org/d3.v3.min.js" type="text/javascript"></script>
 <script>
+
+
+
+
+
 
 var height = width = 700;
 var margin = 4;
@@ -92,12 +107,40 @@ var somethingCrazy = [[2,1],
                       [0,1]]
 
 var trans = somethingCrazy
-print(trans,"box")
-data = data.map(function(x) {
-  return math.multiply(trans,x)
-})
 
-update()
+
+function updateData(op){
+  print(op,"box")
+  data = data.map(function(x) {
+    return math.multiply(op,x)
+  })
+}
+
+updateData(trans)
+
+// update()
+
+
+function handleClick(event){
+    console.log(document.getElementById("myVal").value)
+    draw(document.getElementById("myVal").value)
+    return false;
+}
+
+function draw(val){
+  val = val.split(",")
+  var a = val[0]
+  var b = val[1]
+  var c = val[2]
+  var d = val[3]
+
+  updateData([[a,b],[c,d]]);
+  update();
+}
+
+
+
+
 
 
 </script>

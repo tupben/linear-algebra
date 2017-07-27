@@ -26,12 +26,13 @@
 
 #printBox {
 	flex: 1;
-	/*padding: 10px;*/
+	padding: 30px;
 }
 
 #inputBox {
 	flex: 1;
 	border-top: 1px darkgray solid;
+	padding: 30px;
 }
 
 #graphBox:hover {
@@ -40,6 +41,7 @@
 
 #printBox:hover {
 	border: 1px black solid;
+	font-size: 98px;
 }
 
 #inputBox:hover {
@@ -47,12 +49,26 @@
 }
 
 .text {
-	margin: 32px;
-	font-size: 32px;
+	margin: 0 0 10px 0;
+	font-size: 36px;
 	font-family: courier;
 }
 
 line {
   stroke: black;
   stroke-width: 1px;
+}
+
+input {
+	font-size: 30px;
+	font-family: courier;
+}
+
+#submit{
+	height:30px;
+	width: 100px;
+	border: 1px black solid;
+	font-size: 20px;
+	text-align: center;
+	background-color: lightblue;
 }
