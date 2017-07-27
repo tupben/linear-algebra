@@ -89,7 +89,7 @@ function update() {
   circle
       .data(data)
     .transition()
-      .delay(500)
+      // .delay(500)
       .duration(6000)
       .attr("cx",function(d){return x(d[0])})
       .attr("cy",function(d){return y(d[1])})
@@ -116,7 +116,7 @@ function updateData(op){
   })
 }
 
-updateData(trans)
+// updateData(trans)
 
 // update()
 
