@@ -3,6 +3,9 @@
 	flex-direction: row;
 	font-size: 30px;
 	color: white;
+	font-family: courier;
+	letter-spacing: 1px;
+	/*font-weight: 100;*/
 }
 
 #graphBox {
@@ -24,7 +27,7 @@
 	margin: 5px;
 	display: flex;
 	flex-direction: column;
-	font-family: courier;
+	/*font-family: courier;*/
 
 }
 
@@ -54,18 +57,34 @@
 }
 
 .text {
-	margin: 0 4px 4px 0;
+	margin: 0 18px 18px 0;
 	padding:8px;
-	font-size: 36px;
-	font-family: courier;
 	border: 1px solid steelblue;
 	display: inline-block;
 }
 
-line {
-  stroke: white;
-  stroke-width: 1px;
+.axis {
+	stroke: #E0E0FF;
+	stroke-width: 1px;
 }
+
+.bigTick {
+	/*stroke: blue;*/
+	stroke: #3030B2;
+	stroke-width: 1px;
+}
+
+.lilTick {
+	stroke: #000065;
+}
+
+.vector {
+	/*fill: yellow;*/
+	/*stroke: yellow;*/
+	stroke-width: 4px;
+	stroke-linecap: round;
+}
+
 
 input {
 	font-size: 30px;
@@ -74,7 +93,7 @@ input {
 
 #submit{
 	height:30px;
-	width: 160px;
+	width: 370px;
 	border: 1px white solid;
 	font-size: 24px;
 	text-align: center;
