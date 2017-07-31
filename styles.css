@@ -91,9 +91,10 @@ input {
 	font-family: courier;
 }
 
-#submit{
+.button{
 	height:30px;
 	width: 370px;
+	margin-bottom:20px;
 	border: 1px white solid;
 	font-size: 24px;
 	text-align: center;

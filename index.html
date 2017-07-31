@@ -16,7 +16,8 @@
             ENTER TRANSFORMATION<br><br>
             <input type="text" id="textBox" placeholder=" i.e 1,0,0,1" >
             <br><br>
-            <div id="submit" onClick="handleClick(1)">Transform!</div>
+            <div class="button" id="submit" onClick="handleClick(1)">Transform!</div>
+            <div class="button" id="clear" onClick="handleClick(2)">Restart!</div>
         </form>
 
     </div>
@@ -112,7 +113,7 @@ var head = vector
     .attr("class","vector")
     .attr("cx",function(d){return x(d[0])})
     .attr("cy",function(d){return y(d[1])})
-    .attr("r",3)
+    .attr("r",4)
     .style("fill","yellow")
 
 function updateVector() {
@@ -158,6 +159,15 @@ var scaleU    =       [ [2,0],
 var scaleD    =       [ [.5,0],
                         [0,.5]]; 
 
+
+function setup(){
+  print('test2')
+  vectorData = [[1,0],[0,1]]
+  gridData   = grid(ticks)
+  updateGrid();
+  updateVector();
+}
+
 function transform(data,operation) {
   if (typeof eval(operation) === "object"){
     operation = eval(operation);
@@ -195,6 +205,10 @@ function handleClick(e){
     gridData = transform(gridData,inputTransform);
     updateGrid();
     document.getElementById("textBox").value = "";
+  }
+  if(e === 2){
+    print('test1');
+    setup();
   }
   return false;
 }
